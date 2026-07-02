@@ -1,0 +1,10 @@
+﻿Categoria,Limite_USD,Aprobacion,Observaciones
+Hotel,120,Supervisor,Incluye alojamiento durante viajes laborales.
+Alimentacion,40,Supervisor,Debe presentarse factura.
+Taxi,25,Supervisor,Solo traslados relacionados con trabajo.
+Combustible,80,Supervisor,Aplicable a vehículos autorizados.
+Vuelo Nacional,400,Gerencia,Requiere autorización previa.
+Vuelo Internacional,1200,Dirección,Debe justificarse el viaje.
+Capacitacion,500,RRHH,Relacionada con el puesto.
+Software,300,Sistemas,Debe ser software aprobado.
+Equipamiento,700,Gerencia,Compra de hardware autorizado.
