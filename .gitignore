@@ -1,0 +1,12 @@
+# Entorno virtual
+.venv/
+
+# Variables de entorno
+.env
+
+# Archivos de Python
+__pycache__/
+*.pyc
+
+# Base vectorial (la crearemos luego)
+vector_store/

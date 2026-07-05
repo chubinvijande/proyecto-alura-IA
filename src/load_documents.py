@@ -1,9 +1,8 @@
-from pathlib import Path
-
+from config import DATA_PATH
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_community.document_loaders.csv_loader import CSVLoader
 
-DATA_PATH = Path("data")
+
 
 
 def load_documents():
@@ -33,5 +32,5 @@ def load_documents():
     return documents
 
  
-    if __name__ == "__main__":
-        load_documents()
+if __name__ == "__main__":
+      load_documents()

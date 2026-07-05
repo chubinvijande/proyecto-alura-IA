@@ -1,10 +1,9 @@
-from pathlib import Path 
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
+from config import KNOWLEDGE_PATH
+from config import DATA_PATH
 
-KNOWLEDGE_PATH = Path("knowledge_base")
-DATA_PATH = Path("data")
-OUTPUT_PATH = Path("data")
+OUTPUT_PATH = DATA_PATH
 
 
 def generate_pdfs():
