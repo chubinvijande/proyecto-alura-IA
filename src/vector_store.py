@@ -29,5 +29,25 @@ def create_vector_store():
     print("✅ Vector Store creado correctamente.")
 
 
+    #preguntas locales:
+    question = "¿Cuántos días de vacaciones tengo?"
+
+    documents = retriever.invoke(question)
+
+    print()
+
+    print("RESULTADOS ENCONTRADOS")
+
+    print("=" * 80)
+
+    for i, doc in enumerate(documents, start=1):
+
+     print(f"\nDocumento {i}")
+
+     print("-" * 40)
+
+     print(doc.page_content)
+
+
 if __name__ == "__main__":
     create_vector_store()
