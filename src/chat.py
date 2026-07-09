@@ -17,10 +17,7 @@ def ask(question):
     for doc in documents
     }
 
-    print("\nFuentes consultadas:")
-
-    for source in sorted(sources):
-        print(f"• {source}")
+    
 
     context = "\n\n".join(
         doc.page_content for doc in documents
@@ -39,7 +36,7 @@ def ask(question):
 
     memory.add(question, answer)
 
-    return answer
+    return answer, sorted(sources)
     
 
 if __name__ == "__main__":
@@ -57,6 +54,12 @@ if __name__ == "__main__":
             print("\n👋 ¡Hasta luego!")
             break
 
-        answer = ask(question)
+        answer, sources = ask(question)
 
-        print(f"\n🤖 Asistente:\n{answer}")
+        print(f"\n🤖 Asistente:\n")
+        print(answer)
+
+        print("\n📄 Fuentes utilizadas:")
+
+        for source in sources:
+            print(f"• {source}")
