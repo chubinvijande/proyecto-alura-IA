@@ -1,25 +1,19 @@
 from config import VECTOR_STORE_PATH, EMBEDDING_MODEL,    TOP_K
-
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
-
+from vector_store_loader import load_vector_store
 
 
 def load_retriever():
 
-    embeddings = HuggingFaceEmbeddings(
-    model_name=EMBEDDING_MODEL
-)
-    vector_store = FAISS.load_local(
-    str(VECTOR_STORE_PATH),
-    embeddings,
-    allow_dangerous_deserialization=True
-)
-    retriever = vector_store.as_retriever(
-    search_kwargs={"k": TOP_K}
-)
+    vector_store = load_vector_store()
+
+    return vector_store.as_retriever(
+        search_kwargs={"k": TOP_K}
+    )
     
-    return retriever
+    
+    
 
 if __name__ == "__main__":
 
