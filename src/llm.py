@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-from config import LLM_MODEL
+from src.config import LLM_MODEL
 
 def load_llm():
 

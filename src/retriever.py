@@ -1,7 +1,5 @@
-from config import VECTOR_STORE_PATH, EMBEDDING_MODEL,    TOP_K
-from langchain_community.vectorstores import FAISS
-from langchain_huggingface import HuggingFaceEmbeddings
-from vector_store_loader import load_vector_store
+from src.config import TOP_K
+from src.vector_store_loader import load_vector_store
 
 
 def load_retriever():

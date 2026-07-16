@@ -1,8 +1,9 @@
-from retriever import load_retriever
-from llm import load_llm
+from src.retriever import load_retriever
+from src.llm import load_llm
 from pathlib import Path
-from prompts import build_prompt
-from memory import ConversationMemory
+from src.prompts import build_prompt
+from src.memory import ConversationMemory
+from src.sources import get_sources
 
 memory = ConversationMemory()
 retriever = load_retriever()
@@ -12,12 +13,7 @@ def ask(question):
 
     documents = retriever.invoke(question)
 
-    sources = {
-    Path(doc.metadata["source"]).name
-    for doc in documents
-    }
-
-    
+    sources = get_sources(documents)
 
     context = "\n\n".join(
         doc.page_content for doc in documents

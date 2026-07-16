@@ -1,4 +1,4 @@
-from config import DATA_PATH
+from src.config import DATA_PATH
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_community.document_loaders.csv_loader import CSVLoader
 
@@ -24,13 +24,13 @@ def load_documents():
     # Unir documentos
     documents = pdf_documents + csv_documents
 
-    # Mostrar información
-    print(f"📄 PDFs cargados: {len(pdf_documents)}")
-    print(f"📊 CSV cargados: {len(csv_documents)}")
-    print(f"📚 Total de documentos: {len(documents)}")
-
+  
     return documents
 
  
 if __name__ == "__main__":
-      load_documents()
+ 
+    documents = load_documents()
+
+    print(f"📄 PDFs cargados: {len([d for d in documents if d.metadata['source'].endswith('.pdf')])}")
+    print(f"📚 Total de documentos: {len(documents)}")

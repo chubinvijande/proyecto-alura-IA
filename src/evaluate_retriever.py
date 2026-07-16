@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from config import TOP_K
-from vector_store_loader import load_vector_store
+from src.config import TOP_K
+from src.vector_store_loader import load_vector_store
 
 
 

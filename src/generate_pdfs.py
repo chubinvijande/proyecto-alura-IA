@@ -1,7 +1,7 @@
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
-from config import KNOWLEDGE_PATH
-from config import DATA_PATH
+from src.config import KNOWLEDGE_PATH
+from src.config import DATA_PATH
 
 OUTPUT_PATH = DATA_PATH
 
