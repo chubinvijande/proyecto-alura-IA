@@ -1,15 +1,30 @@
 from src.retriever import load_retriever
 from src.llm import load_llm
-from pathlib import Path
 from src.prompts import build_prompt
 from src.memory import ConversationMemory
 from src.sources import get_sources
 
 memory = ConversationMemory()
-retriever = load_retriever()
-llm = load_llm()
+
+retriever = None
+llm = None
+
+
+def initialize():
+
+    global retriever
+    global llm
+
+    if retriever is None:
+        retriever = load_retriever()
+
+    if llm is None:
+        llm = load_llm()
+
 
 def ask(question):
+
+    initialize()
 
     documents = retriever.invoke(question)
 
@@ -17,15 +32,16 @@ def ask(question):
 
     context = "\n\n".join(
         doc.page_content for doc in documents
-        )
-    
+    )
+
     history = memory.get_history_text()
 
     prompt = build_prompt(
         history,
         context,
-        question)
-    
+        question
+    )
+
     response = llm.invoke(prompt)
 
     answer = response.content
@@ -33,7 +49,7 @@ def ask(question):
     memory.add(question, answer)
 
     return answer, sorted(sources)
-    
+
 
 if __name__ == "__main__":
 
@@ -52,10 +68,9 @@ if __name__ == "__main__":
 
         answer, sources = ask(question)
 
-        print(f"\n🤖 Asistente:\n")
         print(answer)
 
-        print("\n📄 Fuentes utilizadas:")
+        print("\nFuentes:")
 
         for source in sources:
-            print(f"• {source}")
+            print(source)

@@ -1,33 +1,27 @@
-import os 
 from src.config import VECTOR_STORE_PATH, EMBEDDING_MODEL
-from dotenv import load_dotenv
-
-from src.split_documents import split_documents
 
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 
+_embeddings = None
+_vector_store = None
 
 
-def create_vector_store():
+def load_vector_store():
+    global _embeddings, _vector_store
 
-    chunks = split_documents()
+    if _vector_store is not None:
+        return _vector_store
 
-    embeddings = HuggingFaceEmbeddings(
-    model_name=EMBEDDING_MODEL
-)
+    if _embeddings is None:
+        _embeddings = HuggingFaceEmbeddings(
+            model_name=EMBEDDING_MODEL
+        )
 
-    vector_store = FAISS.from_documents(
-        chunks,
-        embeddings
+    _vector_store = FAISS.load_local(
+        str(VECTOR_STORE_PATH),
+        _embeddings,
+        allow_dangerous_deserialization=True
     )
 
-    VECTOR_STORE_PATH.mkdir(exist_ok=True)
-
-    vector_store.save_local(str(VECTOR_STORE_PATH))
-
-    print("✅ Vector Store creado correctamente.")
-
-
-if __name__ == "__main__":
-    create_vector_store()
+    return _vector_store
